@@ -1,0 +1,219 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/MM_PUR_PR_PROFNL_MAINTAIN_SRV/$metadata">
+        <edmx:Include Namespace="MM_PUR_PR_PROFNL_MAINTAIN_SRV" Alias="SAP" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="MM_PUR_PR_PROFNL_MAINTAIN_SRV.C_PurchaseReqnHeaderType">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>PurchaseRequisitionType</PropertyPath>
+                        <PropertyPath>PurchaseRequisitionForEdit</PropertyPath>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseRequisitionForEdit" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurReqnLifeCycleStatus" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NumberOfItems" />
+                            <Annotation Term="UI.Importance" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            EnumMember="UI.ImportanceType/High" />
+                            <PropertyValue Property="Value" Path="PurReqnOrigin" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseRequisitionType" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalNetAmount" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Purchase Requisition" />
+                        <PropertyValue Property="TypeNamePlural" String="Purchase Requisitions" />
+                        <PropertyValue Property="TypeImageUrl" String="/sap/bc/ui5_ui5/sap/mm_ppr_maints1/images/PurchaseReqn.jpg" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="PurchaseRequisitionForEdit" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="PurReqnHeaderDescription" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.DataPoint" Qualifier="PurReqnLifeCycleStatus">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Title" String="Status">
+                            <Annotation Term="UI.MultiLineText" Bool="false" />
+                        </PropertyValue>
+                        <PropertyValue Property="Value" Path="PurReqnLifeCycleStatus" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="TotalNetAmount">
+                    <Record>
+                        <PropertyValue Property="Value" Path="TotalNetAmount" />
+                        <PropertyValue Property="Title" String="Total Value" />
+                        <PropertyValue Property="TargetValue" Path="TotalNetAmount" />
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#PurReqnLifeCycleStatus" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#TotalNetAmount" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="GeneralInformation">
+                                <Annotation Term="UI.MultiLineText" Bool="false" />
+                            </PropertyValue>
+                            <PropertyValue Property="ID" String="GeneralInformation">
+                                <Annotation Term="UI.MultiLineText" Bool="false" />
+                            </PropertyValue>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="ID" String="iDocType">
+                                            <Annotation Term="UI.MultiLineText" Bool="false" />
+                                        </PropertyValue>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#DocumentType" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Items" />
+                            www
+                            <PropertyValue Property="Target" AnnotationPath="to_PurchaseReqnItem/@UI.LineItem#Item" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="to_PurchaseReqnItem/@UI.LineItem#LimitItem" />
+                            <PropertyValue Property="Label" String="Limit Items" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+
+            <Annotations Target="MM_PUR_PR_PROFNL_MAINTAIN_SRV.C_PurchaseReqnItemType">
+                <Annotation Term="UI.LineItem" Qualifier="Item">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseRequisitionItem" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductType" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Material" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaterialGroup" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Plant" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="RequestedQuantity" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="RequisitionerName" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Supplier" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Delete" />
+                            <PropertyValue Property="Action" String="MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnItemDelete_item" />
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated" />
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Update Price" />
+                            <PropertyValue Property="Action" String="MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnItemUpdate_ctlg_itm_price" />
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.LineItem" Qualifier="LimitItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PurchaseRequisitionItem" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ExpectedOverallLimitAmount" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OverallLimitAmount" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AccountAssignmentCategory" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Plant" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Supplier" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Delete" />
+                            <PropertyValue Property="Action" String="MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnItemDelete_item" />
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
